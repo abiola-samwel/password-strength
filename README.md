@@ -77,7 +77,7 @@ password-check/
 1. **Clone the repository**
 ```bash
 git clone <https://github.com/abiola-samwel/password-strength>
-cd password-check
+cd password-strength/backend
 ```
 
 2. **Create and activate a virtual environment**
@@ -95,23 +95,28 @@ pip install -r requirements.txt
 
 4. **Train the model (if model.pkl not included)**
 ```bash
-python backend/train_model.py
+cd password-strength/backend
+python train_model.py
 ```
-
+![Model Training](images/train-model.png)
 5. **Start the FastAPI server**
+ cd password-strength/backend 
 ```bash
-python -m uvicorn backend.app:app --reload
-```
 
+uvicorn app:app --reload
+
+```
+![API Server](images/api-server.png)
 ---
 
 ## CLI Password Tester
 
 1. **Run the interactive tester**
+ cd password-strength/backend - in another terminal
 ```bash
-python backend/test_password.py
+python test_password.py
 ```
-
+![CLI Tester](images/test.png)
 2. **Exit CLI**
 Use Ctrl+C or follow on-screen instructions.
 
