@@ -97,8 +97,10 @@ pip install -r requirements.txt
 ```bash
 cd password-strength/backend
 python train_model.py
-```
+
 ![Model Training](images/train-model.png)
+```
+
 5. **Start the FastAPI server**
  cd password-strength/backend 
 ```bash
