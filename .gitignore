@@ -1,16 +1,19 @@
-# Python virtual environment
-venv/
-
 # Python cache files
 __pycache__/
 *.pyc
 
-# Machine learning / model files
+# Virtual environment
+venv/
+
+# Dataset and model files
 *.pkl
 *.sqlite
 *.zip
 
-# Images / outputs
-backend/confusion_matrix.png
+# IDE/editor directories
+.vscode/
+.idea/
 
-
+# OS-specific files
+.DS_Store
+Thumbs.db
