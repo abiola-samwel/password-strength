@@ -1,0 +1,16 @@
+# FastAPI backend
+fastapi==0.115.0
+uvicorn==0.30.0
+
+# Data processing & ML (stable with NumPy 1.26.x)
+numpy==1.26.4
+pandas==2.1.1
+scikit-learn==1.5.2
+joblib==1.4.2
+
+# Visualization (optional)
+matplotlib==3.8.1
+seaborn==0.12.2
+
+# API requests
+requests==2.32.3

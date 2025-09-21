@@ -1,0 +1,18 @@
+# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Machine learning models
+*.pkl
+
+# Database files
+*.sqlite
+
+# Raw dataset archives
+password-datas.zip
+
+# Images / plots
+*.png
