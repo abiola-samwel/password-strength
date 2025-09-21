@@ -93,34 +93,36 @@ venv\Scripts\activate       # Windows
 pip install -r requirements.txt
 ```
 
-4. **Train the model (if model.pkl not included)**
+4. **Train the model (if `model.pkl` not included)**
 ```bash
 cd password-strength/backend
 python train_model.py
+```
 
 ![Model Training](images/train-model.png)
-```
 
 5. **Start the FastAPI server**
- cd password-strength/backend 
 ```bash
-
+cd password-strength/backend
 uvicorn app:app --reload
-
 ```
+
 ![API Server](images/api-server.png)
+
 ---
 
 ## CLI Password Tester
 
-1. **Run the interactive tester**
- cd password-strength/backend - in another terminal
+1. **Run the interactive tester** (in another terminal)
 ```bash
+cd password-strength/backend
 python test_password.py
 ```
+
 ![CLI Tester](images/test.png)
+
 2. **Exit CLI**
-Use Ctrl+C or follow on-screen instructions.
+- Use `Ctrl+C` or follow on-screen instructions.
 
 ## API Usage
 
