@@ -1,27 +1,16 @@
-# Python
+# Python virtual environment
 venv/
+
+# Python cache files
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
-*.log
 
-# Backend data / models
-backend/model.pkl
-backend/password_model.pkl
-backend/password_data.sqlite
-backend/password-datas.zip
+# Machine learning / model files
+*.pkl
+*.sqlite
+*.zip
+
+# Images / outputs
 backend/confusion_matrix.png
 
-# Node / Frontend
-frontend/node_modules/
-frontend/.next/
-frontend/out/
-frontend/.env.local
 
-
-# OS / Editor
-.DS_Store
-Thumbs.db
-.vscode/
-*.swp

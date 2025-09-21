@@ -67,10 +67,6 @@ password-check/
 │   ├── test_password.py               # Interactive CLI tester with persistent strength bar
 │   ├── dataset.csv                    # Password dataset for training
 │   └── requirements.txt               # Python dependencies
-├─ frontend/
-│   ├── index.html
-│   ├── script.js
-│   └── style.css
 └─ README.md                          # Project documentation
 ```
 
@@ -80,7 +76,7 @@ password-check/
 
 1. **Clone the repository**
 ```bash
-git clone <your-repo-url>
+git clone <https://github.com/abiola-samwel/password-strength>
 cd password-check
 ```
 
