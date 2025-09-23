@@ -26,7 +26,12 @@ As a security engineer, I developed this tool to provide real-time insights into
    - **API:** `/predict` endpoint returns a JSON with strength, score, and breach status.
    - User-friendly messages indicate whether passwords are safe or compromised.
 
-[![Try Demo](https://img.shields.io/badge/Try%20Demo-Streamlit-blue?style=for-the-badge&logo=streamlit)](https://password-strength-5febfgghoh9qnyatmp3rmn.streamlit.app/)
+<p align="center">
+  <a href="https://password-strength-5febfgghoh9qnyatmp3rmn.streamlit.app/">
+    <img src="https://img.shields.io/badge/Try%20Demo-Streamlit-red?style=for-the-badge&logo=streamlit" alt="Try Demo">
+  </a>
+</p>
+
 ---
 
 ## Training the Model
