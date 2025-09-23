@@ -1,6 +1,5 @@
 # train_model.py
 import pandas as pd
-import sqlite3
 import re
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -20,11 +19,9 @@ def password_features(pw: str):
     return [length, digits, upper, lower, symbols, entropy]
 
 # -------------------------------
-# Load dataset
+# Load dataset (from CSV instead of SQLite)
 # -------------------------------
-conn = sqlite3.connect("password_data.sqlite")
-df = pd.read_sql_query("SELECT password, strength FROM users", conn)
-conn.close()
+df = pd.read_csv("dataset.csv")   # must have "password" and "strength" columns
 
 # Drop NA
 df = df.dropna()
