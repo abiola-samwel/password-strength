@@ -4,7 +4,7 @@ uvicorn==0.30.0
 
 # Data processing & ML (stable with NumPy 1.26.x)
 numpy==1.26.4
-pandas==2.1.1
+pandas==2.2.2
 scikit-learn==1.5.2
 joblib==1.4.2
 
