@@ -9,13 +9,17 @@ import requests
 from functools import lru_cache
 
 # -------------------------------
-# Load model
+# Load pretrained model
 # -------------------------------
 MODEL_PATH = os.path.join(os.path.dirname(__file__), "model.pkl")
+if not os.path.exists(MODEL_PATH):
+    st.error(f"Model not found at {MODEL_PATH}. Make sure 'model.pkl' is committed to the repo.")
+    st.stop()
+
 try:
     model = joblib.load(MODEL_PATH)
 except Exception as e:
-    st.error(f"Failed to load model at {MODEL_PATH}: {e}")
+    st.error(f"Failed to load model: {e}")
     st.stop()
 
 # -------------------------------
@@ -24,42 +28,18 @@ except Exception as e:
 st.markdown(
     """
 <style>
-.big-title {
-    font-size: 36px;
-    font-weight: 700;
-    margin-bottom: 12px;
-    text-align: center;
-}
-
-label, .stCheckbox label {
-    font-size: 18px !important;
-}
-
-input[type="password"] {
-    font-size: 20px !important;
-    padding: 14px 16px !important;
-    height: 52px !important;
-    line-height: 1.4 !important;
-}
-
-.stButton>button {
-    height: 46px;
-    font-size: 16px;
-    width: 160px;
-    margin: auto;
-    display: block;
-}
-
-.stMarkdown, .stText, .stAlert {
-    font-size: 18px !important;
-}
+.big-title { font-size: 36px; font-weight: 700; margin-bottom: 12px; text-align: center; }
+label, .stCheckbox label { font-size: 18px !important; }
+input[type="password"] { font-size: 20px !important; padding: 14px 16px !important; height: 52px !important; line-height: 1.4 !important; }
+.stButton>button { height: 46px; font-size: 16px; width: 160px; margin: auto; display: block; }
+.stMarkdown, .stText, .stAlert { font-size: 18px !important; }
 </style>
 """,
     unsafe_allow_html=True,
 )
 
 # -------------------------------
-# Helpers
+# Feature extraction
 # -------------------------------
 def password_features(pw: str):
     length = len(pw)
@@ -70,6 +50,9 @@ def password_features(pw: str):
     entropy = np.log2(len(set(pw))) * length if pw else 0
     return [[length, digits, upper, lower, symbols, entropy]]
 
+# -------------------------------
+# HaveIBeenPwned API check
+# -------------------------------
 @lru_cache(maxsize=256)
 def hibp_check_cached(prefix: str, suffix: str):
     url = f"https://api.pwnedpasswords.com/range/{prefix}"
@@ -100,18 +83,12 @@ if "last_result" not in st.session_state:
 # -------------------------------
 st.markdown("<div class='big-title'>🔐 AI-Powered Password Strength Checker</div>", unsafe_allow_html=True)
 
-# Clear callback
 def clear_input():
     st.session_state.password_input = ""
     st.session_state.last_result = None
 
-# Main input
 password = st.text_input("Enter password (press Enter to analyze):", type="password", key="password_input")
-
-# Clear button right below input
 st.button("🗑️ Clear", on_click=clear_input)
-
-# HIBP checkbox
 check_breach = st.checkbox("Check against HaveIBeenPwned (HIBP)")
 
 # -------------------------------
@@ -129,28 +106,22 @@ if password:
     strength = labels.get(int(score), "Unknown")
     percent = int((int(score) / 2) * 100)
 
-    # Colored label
     color = "#0a8a0a" if strength == "Strong" else ("#ff8c00" if strength == "Medium" else "#b00020")
     st.markdown(f"<h2 style='color: {color}; text-align:center;'>{strength}</h2>", unsafe_allow_html=True)
-
-    # Progress bar
     st.progress(percent)
 
-    # Optional HIBP check
-    if check_breach:
-        if len(password) >= 6:
-            with st.spinner("Checking HaveIBeenPwned..."):
-                hibp_result = hibp_check(password)
-            if hibp_result is True:
-                st.error("⚠️ This password has appeared in breaches. DO NOT use it.")
-            elif hibp_result is False:
-                st.success("✅ Not found in HIBP.")
-            else:
-                st.warning("HIBP check unavailable.")
+    if check_breach and len(password) >= 6:
+        with st.spinner("Checking HaveIBeenPwned..."):
+            hibp_result = hibp_check(password)
+        if hibp_result is True:
+            st.error("⚠️ This password has appeared in breaches. DO NOT use it.")
+        elif hibp_result is False:
+            st.success("✅ Not found in HIBP.")
         else:
-            st.info("HIBP skipped: too short.")
+            st.warning("HIBP check unavailable.")
+    elif check_breach:
+        st.info("HIBP skipped: too short.")
 
-    # Save results
     st.session_state.last_result = {
         "Strength": strength,
         "Score": int(score),
