@@ -1,6 +1,5 @@
 # AI-Powered Password Strength Checker
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://password-strength-5febfgghoh9qnyatmp3rmn.streamlit.app/)
 
 As a security engineer, I developed this tool to provide real-time insights into password strength and verify if passwords have been compromised in known data breaches. It combines AI-driven password classification with practical breach detection, demonstrating modern cybersecurity practices.
 
@@ -27,6 +26,7 @@ As a security engineer, I developed this tool to provide real-time insights into
    - **API:** `/predict` endpoint returns a JSON with strength, score, and breach status.
    - User-friendly messages indicate whether passwords are safe or compromised.
 
+[![Try Demo](https://img.shields.io/badge/Try%20Demo-Streamlit-blue?style=for-the-badge&logo=streamlit)](https://password-strength-5febfgghoh9qnyatmp3rmn.streamlit.app/)
 ---
 
 ## Training the Model
