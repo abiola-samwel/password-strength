@@ -1,5 +1,9 @@
-# AI-Powered Password Strength Checker 
+# AI-Powered Password Strength Checker
+
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://password-strength-5febfgghoh9qnyatmp3rmn.streamlit.app/)
+
 As a security engineer, I developed this tool to provide real-time insights into password strength and verify if passwords have been compromised in known data breaches. It combines AI-driven password classification with practical breach detection, demonstrating modern cybersecurity practices.
+
 
 ---
 
